@@ -11,6 +11,7 @@ export default async function handler(req, res) {
     const reviews = response.data.result.reviews;
     res.status(200).json(reviews.slice(0, 5)); // return only 5
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch reviews" });
-  }
+  console.error(error); // Add this
+  res.status(500).json({ error: "Failed to fetch reviews", details: error.message });
+}
 }
